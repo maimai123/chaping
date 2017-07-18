@@ -25,7 +25,7 @@
             </div>
             <div class="comm"  @click="changeCommenter(item.author,index)">{{item.comments}}</div>
               <div v-if="item.reply.length>0" class="pdl10">
-                <div class="reply" v-for="(reply,index) in item.reply">
+                <div class="reply" v-for="(reply,ii) in item.reply">
                   <div class="auth">
                     <img class="authorImg" :src="reply.img" alt="author"/>
                     <span class="authorTitle">  {{ reply.responder}} 回复 {{reply.reviewers}}</span>
@@ -67,7 +67,7 @@ export default {
       left:200,
       mine:'麦麦',
       oldComment:null,
-      type: 0,                //0为评论作者1为评论别人的评论2为评论别人的别人
+      type: 0,                //0为评论作者1为评论别人的评论
       chosedIndex: -1,        //被选中的评论的index
       commenter: "麦麦",   //评论人
       commenterImg:'http://img2.chouti.com/CHOUTI_6A62E3B96168484A92CAEB9465CAD598_W180H180=15x15.jpg'
@@ -140,14 +140,16 @@ export default {
       this.content = '';
       if(isexit){
         this.type = 0;
+      }else{
+        this.type = 1;
       }
     },
     changeCommenter(responder,index){ //回复
 			this.chosedIndex = index;
 			this.type = 1;
+      this.changeVisible();
       console.log(this.chosedIndex+","+this.type)
       this.oldComment = responder;
-      this.changeVisible();
     },
     submitComment(){ //提交评论
       let self = this;

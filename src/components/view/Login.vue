@@ -56,6 +56,18 @@ export default {
             duration: 5000
           });
         }else {
+          // function setCookie(cname,cvalue,exdays){
+          //   var d = new Date();
+          //   d.setTime(d.getTime()+(exdays*24*60*60*1000));
+          //   var expires = "expires="+d.toGMTString();
+          //   document.cookie = cname + "=" + cvalue + "; " + expires;
+          // }
+          // setCookie(username,this.username,2);
+          if (window.localStorage) {
+              localStorage.setItem("username", this.username);
+          } else {
+              Cookie.write("username",this.username);
+          }
           Toast({
             message: '发请求',
             position: 'bottom',

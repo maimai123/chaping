@@ -1,8 +1,8 @@
 <template>
   <div class="app_views">
-      <div class="card" v-for="(item,index) in datas" :key="index" @click="goto(item.id)">
+      <div class="card" v-for="(item,index) in datas" :key="index">
           <div class="content-box">
-            <div class="title-m">
+            <div class="title-m"  @click="goto(item.id)">
               {{ item.title }}
             </div>
             <div class="author">
@@ -10,10 +10,10 @@
                <span class="time"> {{item.time}}发布</span>
             </div>
             <div class="comment">
-              <div class="likes">
+              <div class="likes"  @click="doLikes(item.id)">
                 <i class="iconfont icon-dianzan1"></i><span> {{item.like}}</span>
               </div>
-              <div class="comments">
+              <div class="comments" @click="goComment(item.id)">
                 <i class="iconfont icon-pinglun3"></i><span> {{item.comments}}</span>
               </div>
               <div class="share">
@@ -35,13 +35,32 @@ export default {
   name: 'articles',
   props:['datas'],
   methods:{
-    goto(ids){
+    goto(ids){ //详情
       this.$router.push({
         path: '/detail',
         query:{
           id : ids || ''
         }
       });
+    },
+    goComment(ids){ //评论列表
+      this.$router.push({
+        path: '/comments',
+        query:{
+          id : ids || ''
+        }
+      });
+    },
+    doLikes(ids){ //点赞
+      var strStoreDate = window.localStorage ? localStorage.getItem("username"): Cookie.read("username");
+      if(strStoreDate){
+        console.log(strStoreDate);
+        console.log(this);
+      }else{
+        this.$router.push({
+            path: '/login'
+        })
+      }
     }
   },
   mounted(){
@@ -83,7 +102,7 @@ export default {
 .card{
   display:flex;
   padding:.2rem;
-  width:96%;
+  width:10rem;
   border-radius:3px;
   margin:0.3rem auto;
   background-color:#1a1f29;
@@ -101,9 +120,9 @@ export default {
   }
 }
 .content-box{
-  width: 79%;
+  width: 100%;
   position:relative;
-  padding:0 0.2rem;
+  padding:0 0.2rem 0 0;
   font-size: 0.35rem;
 }
 .title-m{

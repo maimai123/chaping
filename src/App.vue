@@ -1,7 +1,9 @@
 <template>
     <!-- 路由 -->
-    <transition name='slide-left' keep-alive>
+    <transition name='slide-fade'>
+      <keep-alive>
         <router-view></router-view>
+      </keep-alive>
     </transition>
     <!-- 返回顶部 -->
     <!-- <Backscroll  v-show="visible" :scroller="scroller"></Backscroll> -->
@@ -46,14 +48,15 @@ export default {
 <style media="screen" lang="less">
 /* 可以设置不同的进入和离开动画 */
 /* 设置持续时间和动画函数 */
-.slide-left-enter, .slide-right-leave-active {
-  opacity: 0;
-  -webkit-transform: translate(50px, 0);
-  transform: translate(50px, 0);
+.slide-fade-enter-active {
+  transition: all .3s ease;
 }
-.slide-left-leave-active, .slide-right-enter {
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for <2.1.8 */ {
+  transform: translateX(10px);
   opacity: 0;
-  -webkit-transform: translate(-50px, 0);
-  transform: translate(-50px, 0);
 }
 </style>

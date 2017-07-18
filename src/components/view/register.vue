@@ -72,6 +72,11 @@ export default {
           duration: 1000
         });
       }else{
+        if (window.localStorage) {
+            localStorage.setItem("username", this.username);
+        } else {
+            Cookie.write("username",this.username);
+        }
           Toast({
             message: '发请求',
             position: 'bottom',

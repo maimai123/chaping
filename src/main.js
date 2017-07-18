@@ -18,7 +18,8 @@ Vue.use(Mint);
 // import { Button, Cell } from 'mint-ui' 按需载入
 // Vue.use(Button)
 // Vue.use(Cell)
-
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+Vue.use(VueAwesomeSwiper)
 
 Vue.config.productionTip = false
 

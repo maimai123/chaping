@@ -33,6 +33,8 @@ export default {
 		},
     changeActives(index){
       this.changeActive(index);
+      console.log(this.mySwiper)
+      // .slideTo(index, 1000, false);
     },
     gotoSearch(){
       this.$router.push({
@@ -43,7 +45,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-@import 'https://at.alicdn.com/t/font_ig6xu4rwjodh1tt9.css';
+@import '//at.alicdn.com/t/font_l7uc9om2ksnn4s4i.css';
 @black:#1d1d1d;
 @white:#ebebeb;
 @e9:#e9e9e9;

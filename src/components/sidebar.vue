@@ -49,7 +49,6 @@ export default {
   methods:{
     ...mapActions(['changePopup','setHot','addHot','setTablist']),
     prevent(event) { //关闭侧边栏
-      console.log(event);
       if(event.target.className == "mask"){
         this.changePopup();
       }
